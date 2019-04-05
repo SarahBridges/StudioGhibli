@@ -16,7 +16,7 @@ var cats = []
 
  console.log("cats", cats)
 
- var table = d3.select("table")
+ var table = d3.select("body").append("table");
 
       var rows = table.selectAll("tr")
               .data(cats)
