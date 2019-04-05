@@ -23,7 +23,7 @@ var cats = []
               .enter()
               .append("tr");
 
-    rows.append("td")
+    rows.selectAll("tr").append("td")
        .text(function(d) {return d.name;})
 
 
