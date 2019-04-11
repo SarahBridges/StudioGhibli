@@ -18,12 +18,12 @@ var cats = []
 
  var table = d3.select("body").append("table");
 
-      var rows = table.selectAll("tr")
+      var cols = table.selectAll("tr")
               .data(cats)
               .enter()
               .append("tr");
 
-    rows.selectAll("td").append("td")
+    cols.selectAll("td").append("td")
        .text(function(d) {return d.name;})
 
 
