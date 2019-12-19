@@ -1,30 +1,36 @@
-var dataP = d3.json('https://ghibliapi.herokuapp.com/species?name=Cat')
+var dataP = d3.json('https://ghibliapi.herokuapp.com/people?species=https://ghibliapi.herokuapp.com/species/603428ba-8a86-4b0b-a9f1-65df6abef3d3')
 
 dataP.then(function(data)
 {
   console.log("data", data)
 
-  var catLinks = []
-  data[0].people.forEach(function(d) {catLinks.push(d);})
+  var cats = []
 
+  var header = {name:"Name", eye_color:"Eye Color", hair_color:"Hair Color"};
 
+  cats.push(header)
+  data.forEach(function(d) {return cats.push(d);})
 
-var cats = []
+  console.log("cats", cats)
 
+ var table = d3.select("body")
+               .append("table")
+              .attr("id", "table");
 
- catLinks.forEach(function(d) {d3.json(d).then(function(data){cats.push(data);})})
-
- console.log("cats", cats)
-
- var table = d3.select("body").append("table");
 
       var rows = table.selectAll("tr")
               .data(cats)
               .enter()
-              .append("tr");
+              .append("tr")
 
-    rows.selectAll("td").append("td")
-       .text(function(d) {return d.name;})
+            rows.append("td")
+            .text(function(d){return d.name;})
+
+            rows.append("td")
+                .text(function(d){return d.eye_color;})
+
+          rows.append("td")
+              .text(function(d){return d.hair_color;})
 
 
 },
@@ -32,8 +38,3 @@ function(err)
 {
   console.log(err)
 })
-
-var addDataToArrays = function(d)
-{
-  cats.forEach
-}
